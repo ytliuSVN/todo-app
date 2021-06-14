@@ -43,6 +43,7 @@ export const HeaderTitle = styled.Text`
   letter-spacing: 2px;
   font-style: italic;
 `;
+
 export const HeaderButton = styled.TouchableOpacity`
   font-weight: bold;
   color: ${colors.tertiary};
