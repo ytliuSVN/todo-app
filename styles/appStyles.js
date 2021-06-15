@@ -14,9 +14,9 @@ const statusBarHeight = Constants.statusBarHeight;
 // Colors
 export const colors = {
   primary: '#6f02b5',
-  secondary: '#aa55e0',
-  tertiary: '#E6E6E6',
-  alternative: '#999999',
+  secondary: '#9440c7',
+  tertiary: '#e8e8e8',
+  alternative: '#d1c5d1',
 };
 
 export const Container = styled.SafeAreaView`
