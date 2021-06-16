@@ -9,14 +9,14 @@ import {
 } from './../styles/appStyles';
 
 // Icons
-import { Fontisto } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const Header = () => {
   return (
     <HeaderView>
       <HeaderTitle>Todos</HeaderTitle>
       <HeaderButton>
-        <Fontisto name='trash' size={25} color={colors.tertiary} />
+        <Ionicons name='ios-trash' size={30} color={colors.tertiary} />
       </HeaderButton>
     </HeaderView>
   );

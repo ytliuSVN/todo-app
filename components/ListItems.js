@@ -1,8 +1,17 @@
 import React from 'react';
-import { SwipeListView } from 'react-native-swipe-list-view';
 
 // styled components
-import { ListView, TodoText, TodoDate, colors } from '../styles/appStyles';
+import {
+  ListView,
+  ListViewHidden,
+  TodoText,
+  TodoDate,
+  HiddenButton,
+  colors,
+} from '../styles/appStyles';
+
+import { SwipeListView } from 'react-native-swipe-list-view';
+import { Ionicons } from '@expo/vector-icons';
 
 const ListItems = ({ todos, setTodos }) => {
   return (
@@ -18,6 +27,22 @@ const ListItems = ({ todos, setTodos }) => {
           </ListView>
         );
       }}
+      renderHiddenItem={() => {
+        return (
+          <ListViewHidden>
+            <HiddenButton>
+              <Ionicons name='ios-trash' size={30} color={colors.secondary} />
+            </HiddenButton>
+          </ListViewHidden>
+        );
+      }}
+      leftOpenValue={80}
+      previewRowKey={'1'}
+      previewOpenValue={80}
+      previewOpenDelay={3000}
+      disableLeftSwipe={true}
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1, paddingBottom: 30, marginBottom: 40 }}
     />
   );
 };
