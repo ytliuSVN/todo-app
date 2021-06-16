@@ -101,6 +101,7 @@ export const SwipedTodoText = styled(TodoText)`
   color: ${colors.alternative};
   font-style: italic;
   text-decoration: line-through;
+  opacity: 0.6;
 `;
 
 // Modal
