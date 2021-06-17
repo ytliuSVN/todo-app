@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Text } from 'react-native';
 
 //components
 import Header from './Header';
@@ -27,9 +26,14 @@ const Home = () => {
 
   const [todos, setTodos] = useState(initialTodos);
 
+  // clear all todos
+  const handleClearTodos = () => {
+    setTodos([]);
+  };
+
   return (
     <>
-      <Header />
+      <Header handleClearTodos={handleClearTodos} />
       <ListItems todos={todos} setTodos={setTodos} />
     </>
   );

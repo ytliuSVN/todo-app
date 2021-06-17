@@ -18,31 +18,44 @@ const ListItems = ({ todos, setTodos }) => {
   // For styling currently swiped todo row
   const [swipedRow, setSwipedRow] = useState(null);
 
+  const handleDeleteTodo = (rowMap, rowKey) => {
+    const newTodos = [...todos];
+    const prevIndex = todos.findIndex((todo) => todo.key === rowKey);
+    newTodos.splice(prevIndex, 1);
+    setTodos(newTodos);
+  };
+
+  const onRowDidOpen = (rowKey) => {
+    console.log('This row opened', rowKey);
+  };
+
+  const renderItem = (data) => {
+    const RowText = data.item.key == swipedRow ? SwipedTodoText : TodoText;
+    return (
+      <ListView underlayColor={colors.underlay} onPress={() => {}}>
+        <>
+          <RowText>{data.item.title}</RowText>
+          <TodoDate>{data.item.date}</TodoDate>
+        </>
+      </ListView>
+    );
+  };
+
+  const renderHiddenItem = (data, rowMap) => (
+    <ListViewHidden>
+      <HiddenButton onPress={() => handleDeleteTodo(rowMap, data.item.key)}>
+        <Ionicons name='ios-trash' size={30} color={colors.secondary} />
+      </HiddenButton>
+    </ListViewHidden>
+  );
+
   return (
     <SwipeListView
       data={todos}
-      renderItem={(data) => {
-        const RowText = data.item.key == swipedRow ? SwipedTodoText : TodoText;
-        return (
-          <ListView>
-            <>
-              <RowText>{data.item.title}</RowText>
-              <TodoDate>{data.item.date}</TodoDate>
-            </>
-          </ListView>
-        );
-      }}
-      renderHiddenItem={() => {
-        return (
-          <ListViewHidden>
-            <HiddenButton>
-              <Ionicons name='ios-trash' size={30} color={colors.secondary} />
-            </HiddenButton>
-          </ListViewHidden>
-        );
-      }}
+      renderItem={renderItem}
+      renderHiddenItem={renderHiddenItem}
+      // onRowDidOpen={onRowDidOpen}
       leftOpenValue={80}
-      previewRowKey={'1'}
       previewOpenValue={80}
       previewOpenDelay={3000}
       disableLeftSwipe={true}

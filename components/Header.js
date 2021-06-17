@@ -11,11 +11,11 @@ import {
 // Icons
 import { Ionicons } from '@expo/vector-icons';
 
-const Header = () => {
+const Header = ({ handleClearTodos }) => {
   return (
     <HeaderView>
       <HeaderTitle>Todos</HeaderTitle>
-      <HeaderButton>
+      <HeaderButton onPress={handleClearTodos}>
         <Ionicons name='ios-trash' size={30} color={colors.tertiary} />
       </HeaderButton>
     </HeaderView>

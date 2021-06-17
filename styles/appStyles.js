@@ -17,6 +17,7 @@ export const colors = {
   secondary: '#9440c7',
   tertiary: '#e8e8e8',
   alternative: '#d1c5d1',
+  underlay: '#6b0ca8',
 };
 
 export const Container = styled.SafeAreaView`
@@ -59,6 +60,7 @@ export const ListContainer = styled.View`
 export const ListView = styled.TouchableHighlight`
   background-color: ${colors.secondary};
   min-height: 85px;
+  height: 90px;
   width: 100%;
   padding: 15px;
   justify-content: space-around;
@@ -69,6 +71,7 @@ export const ListView = styled.TouchableHighlight`
 export const ListViewHidden = styled.View`
   background-color: ${colors.tertiary};
   min-height: 85px;
+  height: 90px;
   width: 100%;
   padding: 15px;
   justify-content: center;
