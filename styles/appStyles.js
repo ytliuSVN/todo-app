@@ -6,10 +6,13 @@ import {
   TouchableHighlight,
   SafeAreaView,
   TextInput,
+  Image,
+  Dimensions,
 } from 'react-native';
 import Constants from 'expo-constants';
 
 const statusBarHeight = Constants.statusBarHeight;
+const HEIGHT = Dimensions.get('window').height;
 
 // Colors
 export const colors = {
@@ -86,7 +89,7 @@ export const HiddenButton = styled.TouchableOpacity`
 `;
 
 export const TodoText = styled.Text`
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 1px;
   color: ${colors.tertiary};
 `;
@@ -164,4 +167,18 @@ export const ModalActionGroup = styled.View`
 export const ModalIcon = styled.View`
   align-items: center;
   margin-bottom: 30px;
+`;
+
+// Empty
+export const EmptyView = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: ${HEIGHT / 5}px;
+`;
+
+export const EmptyImage = styled.Image`
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
 `;

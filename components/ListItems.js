@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 
 // styled components
 import {
+  colors,
   ListView,
   ListViewHidden,
   TodoText,
   TodoDate,
   HiddenButton,
   SwipedTodoText,
-  colors,
+  EmptyView,
+  EmptyImage,
 } from '../styles/appStyles';
 
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -49,26 +51,40 @@ const ListItems = ({ todos, setTodos }) => {
     </ListViewHidden>
   );
 
+  const emptyTodos = () => {
+    return (
+      <EmptyView>
+        <EmptyImage source={require('../assets/empty.png')} />
+        <TodoText>You have no todos today</TodoText>
+      </EmptyView>
+    );
+  };
+
   return (
-    <SwipeListView
-      data={todos}
-      renderItem={renderItem}
-      renderHiddenItem={renderHiddenItem}
-      // onRowDidOpen={onRowDidOpen}
-      leftOpenValue={80}
-      previewOpenValue={80}
-      previewOpenDelay={3000}
-      disableLeftSwipe={true}
-      showsVerticalScrollIndicator={false}
-      style={{ flex: 1, paddingBottom: 30, marginBottom: 40 }}
-      // Handling swiped todo row
-      onRowOpen={(rowKey) => {
-        setSwipedRow(rowKey);
-      }}
-      onRowClose={() => {
-        setSwipedRow(null);
-      }}
-    />
+    <>
+      {todos.length == 0 && emptyTodos()}
+      {todos.length != 0 && (
+        <SwipeListView
+          data={todos}
+          renderItem={renderItem}
+          renderHiddenItem={renderHiddenItem}
+          // onRowDidOpen={onRowDidOpen}
+          leftOpenValue={80}
+          previewOpenValue={80}
+          previewOpenDelay={3000}
+          disableLeftSwipe={true}
+          showsVerticalScrollIndicator={false}
+          style={{ flex: 1, paddingBottom: 30, marginBottom: 40 }}
+          // Handling swiped todo row
+          onRowOpen={(rowKey) => {
+            setSwipedRow(rowKey);
+          }}
+          onRowClose={() => {
+            setSwipedRow(null);
+          }}
+        />
+      )}
+    </>
   );
 };
 
