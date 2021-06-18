@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 //components
 import Header from './Header';
 import ListItems from './ListItems';
+import InputModal from './InputModal';
 
 const Home = () => {
   // initial todos
@@ -35,6 +36,7 @@ const Home = () => {
     <>
       <Header handleClearTodos={handleClearTodos} />
       <ListItems todos={todos} setTodos={setTodos} />
+      <InputModal />
     </>
   );
 };
