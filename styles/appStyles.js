@@ -144,7 +144,7 @@ export const StyledInput = styled.TextInput`
   padding: 10px;
   font-size: 16px;
   border-radius: 10px;
-  color: ${colors.secondary};
+  color: ${colors.primary};
   letter-spacing: 1px;
 `;
 

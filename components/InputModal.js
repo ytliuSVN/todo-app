@@ -20,21 +20,42 @@ const InputModal = ({
   todoInputValue,
   setTodoInputValue,
   handleAddTodo,
+  todoToBeEdited,
+  setTodoToBeEdited,
+  handleEditTodo,
 }) => {
   const handleSubmit = () => {
-    handleAddTodo({
-      title: todoInputValue,
-      date: new Date().toUTCString(),
-      key: `${
-        (todos[todos.length - 1] && +todos[todos.length - 1].key + 1) || 1
-      }`,
-    });
+    if (!todoToBeEdited) {
+      if (todoInputValue === '') {
+        alert('Input field must not be empty.');
+        return;
+      }
+      handleAddTodo({
+        title: todoInputValue,
+        date: new Date().toUTCString(),
+        key: `${
+          (todos[todos.length - 1] && +todos[todos.length - 1].key + 1) || 1
+        }`,
+      });
+    } else {
+      if (todoInputValue === '') {
+        alert('Input field must not be empty.');
+        return;
+      }
+      handleEditTodo({
+        title: todoInputValue,
+        date: todoToBeEdited.date,
+        key: todoToBeEdited.key,
+      });
+    }
+
     setTodoInputValue('');
   };
 
   const handleCloseModal = () => {
     setTodoInputValue('');
     setModalVisible(false);
+    setTodoToBeEdited(null);
   };
 
   return (
