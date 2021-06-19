@@ -11,19 +11,31 @@ import {
   ModalIcon,
   HeaderTitle,
 } from './../styles/appStyles';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 const InputModal = ({
+  todos,
   modalVisible,
   setModalVisible,
   todoInputValue,
   setTodoInputValue,
+  handleAddTodo,
 }) => {
-  const handleCloseModal = () => {
-    setModalVisible(false);
+  const handleSubmit = () => {
+    handleAddTodo({
+      title: todoInputValue,
+      date: new Date().toUTCString(),
+      key: `${
+        (todos[todos.length - 1] && +todos[todos.length - 1].key + 1) || 1
+      }`,
+    });
+    setTodoInputValue('');
   };
 
-  const handleSubmit = () => {};
+  const handleCloseModal = () => {
+    setTodoInputValue('');
+    setModalVisible(false);
+  };
 
   return (
     <>
@@ -38,20 +50,35 @@ const InputModal = ({
         onRequestClose={handleCloseModal}
       >
         <ModalContainer>
-          <ModalIcon>
-            <HeaderTitle>Todos</HeaderTitle>
-            <Feather name='edit-3' size={30} color={colors.tertiary} />
-          </ModalIcon>
+          <ModalView>
+            <ModalIcon>
+              <HeaderTitle>Todos</HeaderTitle>
+              <Feather name='edit-3' size={30} color={colors.tertiary} />
+            </ModalIcon>
 
-          <StyledInput
-            placeholder='Add a todo'
-            placeholderTextColor={colors.alternative}
-            selectionColor={colors.secondary}
-            onChangeText={(val) => setTodoInputValue(val)}
-            value={todoInputValue}
-            autoFocus={true}
-            onSubmitEditing={handleSubmit}
-          />
+            <StyledInput
+              placeholder='Add a todo'
+              placeholderTextColor={colors.alternative}
+              selectionColor={colors.secondary}
+              onChangeText={(val) => setTodoInputValue(val)}
+              value={todoInputValue}
+              autoFocus={true}
+              onSubmitEditing={handleSubmit}
+            />
+
+            <ModalActionGroup>
+              <ModalAction onPress={handleCloseModal} color={colors.primary}>
+                <Ionicons name='ios-close' size={28} color={colors.tertiary} />
+              </ModalAction>
+              <ModalAction onPress={handleSubmit} color={colors.tertiary}>
+                <Ionicons
+                  name='ios-checkmark'
+                  size={28}
+                  color={colors.secondary}
+                />
+              </ModalAction>
+            </ModalActionGroup>
+          </ModalView>
         </ModalContainer>
       </Modal>
     </>
