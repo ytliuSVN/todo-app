@@ -32,11 +32,20 @@ const Home = () => {
     setTodos([]);
   };
 
+  // Modal visibility & input value
+  const [modalVisible, setModalVisible] = useState(false);
+  const [todoInputValue, setTodoInputValue] = useState();
+
   return (
     <>
       <Header handleClearTodos={handleClearTodos} />
       <ListItems todos={todos} setTodos={setTodos} />
-      <InputModal />
+      <InputModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        todoInputValue={todoInputValue}
+        setTodoInputValue={setTodoInputValue}
+      />
     </>
   );
 };
