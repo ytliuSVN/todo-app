@@ -1,3 +1,7 @@
+![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+
 # Swipeable Todo App with Expo
 
 ## User Stories
@@ -6,6 +10,6 @@
 
 ### Screenshots
 
-| Home Screen  | Pop-up | Empty Screen |
+| Home Screen  | Add a Todo | Empty Screen |
 | :-: | :-: | :-: |
-| ![Screen1](./assets/screenshot/home.png) | ![Screen2](./assets/screenshot/pop-up.png) | ![Screen3](./assets/screenshot/empty.png) |
+| ![Home](./assets/screenshot/home.png) | ![Add](./assets/screenshot/add.png) | ![Empty](./assets/screenshot/empty.png) |
