@@ -5,31 +5,18 @@ import Header from './Header';
 import ListItems from './ListItems';
 import InputModal from './InputModal';
 
-const Home = () => {
-  // initial todos
-  const initialTodos = [
-    {
-      title: 'June LeetCoding Challenge',
-      date: 'Tuesday, 15-Jun-21 05:52:36 UTC',
-      key: '1',
-    },
-    {
-      title: 'File Tax Return',
-      date: 'Tuesday, 15-Jun-21 05:52:36 UTC',
-      key: '2',
-    },
-    {
-      title: 'Proposal Review',
-      date: 'Tuesday, 15-Jun-21 05:52:36 UTC',
-      key: '3',
-    },
-  ];
+// Async Storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-  const [todos, setTodos] = useState(initialTodos);
-
+const Home = ({ todos, setTodos }) => {
   // clear all todos
   const handleClearTodos = () => {
-    setTodos([]);
+    // Saving to async storage
+    AsyncStorage.setItem('storedTodos', JSON.stringify([]))
+      .then(() => {
+        setTodos([]);
+      })
+      .catch((error) => console.log(error));
   };
 
   // Modal visibility & input value
@@ -39,8 +26,14 @@ const Home = () => {
   // function to add new todo
   const handleAddTodo = (todo) => {
     const newTodos = [...todos, todo];
-    setTodos(newTodos);
-    setModalVisible(false);
+
+    // Saving to async storage
+    AsyncStorage.setItem('storedTodos', JSON.stringify(newTodos))
+      .then(() => {
+        setTodos(newTodos);
+        setModalVisible(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   // edit existing todo item
@@ -56,9 +49,15 @@ const Home = () => {
     const newTodos = [...todos];
     const todoIndex = todos.findIndex((todo) => todo.key === editedTodo.key);
     newTodos.splice(todoIndex, 1, editedTodo);
-    setTodos(newTodos);
-    setTodoToBeEdited(null);
-    setModalVisible(false);
+
+    // Saving to async storage
+    AsyncStorage.setItem('storedTodos', JSON.stringify(newTodos))
+      .then(() => {
+        setTodos(newTodos);
+        setModalVisible(false);
+        setTodoToBeEdited(null);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

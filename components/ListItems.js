@@ -16,6 +16,9 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Ionicons } from '@expo/vector-icons';
 
+// Async Storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const ListItems = ({ todos, setTodos, handleTriggerEdit }) => {
   // For styling currently swiped todo row
   const [swipedRow, setSwipedRow] = useState(null);
@@ -24,7 +27,13 @@ const ListItems = ({ todos, setTodos, handleTriggerEdit }) => {
     const newTodos = [...todos];
     const prevIndex = todos.findIndex((todo) => todo.key === rowKey);
     newTodos.splice(prevIndex, 1);
-    setTodos(newTodos);
+
+    // Saving to async storage
+    AsyncStorage.setItem('storedTodos', JSON.stringify(newTodos))
+      .then(() => {
+        setTodos(newTodos);
+      })
+      .catch((error) => console.log(error));
   };
 
   const onRowDidOpen = (rowKey) => {
